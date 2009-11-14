@@ -28,22 +28,18 @@ grails.mime.types = [ html: ['text/html','application/xhtml+xml'],
 grails.views.default.codec="none" // none, html, base64
 grails.views.gsp.encoding="UTF-8"
 grails.converters.encoding="UTF-8"
-// enable Sitemesh preprocessing of GSP pages
-grails.views.gsp.sitemesh.preprocess = true
-// scaffolding templates configuration
-grails.scaffolding.templates.domainSuffix = 'Instance'
 
-// Set to false to use the new Grails 1.2 JSONBuilder in the render method
-grails.json.legacy.builder=false
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
-// whether to install the java.util.logging bridge for sl4j. Disable fo AppEngine!
-grails.logging.jul.usebridge = true
 
-// set per-environment serverURL stem for creating absolute links
+// enable GSP preprocessing: replace head -> g:captureHead, title -> g:captureTitle, meta -> g:captureMeta, body -> g:captureBody
+grails.views.gsp.sitemesh.preprocess = true
+
+geo_twitter.googleMapsKey = "ABQIAAAAbsJwNuAmOaJE18sONZ3oXxTwM0brOpm-All5BF6PoaKBxRWWERSjfCIoGnJVNtoB-VG3WgeT9aH43g"
 environments {
     production {
-        grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://demo.componentix.com/${appName}"
+        geo_twitter.googleMapsKey = "ABQIAAAAbsJwNuAmOaJE18sONZ3oXxS6PDgnYWzBubbuuLvpkz8oZ7SkXhS0ia-cXa80LYOn9MIu-oBLdGR2AQ"
     }
     development {
         grails.serverURL = "http://localhost:8080/${appName}"
