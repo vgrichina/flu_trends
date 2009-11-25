@@ -1,4 +1,0 @@
-class MessagesController {
-
-    def index = { }
-}
