@@ -5,9 +5,10 @@ dataSource {
     password = "flu_trends"
 }
 hibernate {
-    cache.use_second_level_cache=true
-    cache.use_query_cache=true
-    cache.provider_class='com.opensymphony.oscache.hibernate.OSCacheProvider'
+    cache.use_second_level_cache = true
+    caqche.use_query_cache = true
+    cache.provider_class = "com.opensymphony.oscache.hibernate.OSCacheProvider"
+    dialect = "org.hibernatespatial.mysql.MySQLSpatialDialect"
 }
 // environment specific settings
 environments {

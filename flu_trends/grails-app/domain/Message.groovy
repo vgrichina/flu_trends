@@ -14,4 +14,10 @@ class Message {
         location(nullable: true)
         processed(nullable: false)
     }
+    static mapping = {
+        columns {
+            location(type: org.hibernatespatial.GeometryUserType,
+                        sqlType: "POINT") 
+        }
+    }
 }
