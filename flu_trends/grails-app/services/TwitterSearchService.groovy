@@ -24,9 +24,10 @@ class TwitterSearchService {
         return  [ 
                     messages: jsonArray.results.collect { message ->
                         [
-                            statusId: message.id,
-                            userName: message.from_user,
+                            statusId: message.id as int,
+                            user: message.from_user,
                             imageUrl: message.profile_image_url,
+                            text: message.text.decodeHTML(),
                             date: new Date(message.created_at)
                         ]
                     },
