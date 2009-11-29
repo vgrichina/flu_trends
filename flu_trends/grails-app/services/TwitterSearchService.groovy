@@ -18,7 +18,7 @@ class TwitterSearchService {
         return processJson(jsonArray)
     }
 
-    def searchForNewMessages(def refreshUrl) {
+    def searchNewMessages(String refreshUrl) {
         // Fetch content as JSON
         def jsonArray = fetchJson(BASE_URL + refreshUrl)
         // Postprocess returned JSON

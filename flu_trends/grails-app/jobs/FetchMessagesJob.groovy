@@ -13,21 +13,32 @@ class FetchMessagesJob {
      * Executes task
      */
     def execute() {
-    
-        def search = twitterSearchService.searchMessages(query: "swine flu")
+        MessageSearch.withTransaction {
+            MessageSearch.list().each { search ->
+                // Search either using refresh URL or using query
+                def searchResults = (search.refreshUrl ? twitterSearchService.searchNewMessages(search.refreshUrl)
+                                        : twitterSearchService.searchMessages(query: search.query))
 
-        search.messages.each {
-            // Try to find message in DB
-            def message = Message.findByStatusId(it.statusId)
-            println message
-            println it
-            // If message not found, save it to DB
-            if (!message) {
-                message = new Message(it)
-                message.save(failOnError: true)
-                println "saved"
+                // Loop through search results
+                searchResults.messages.each {
+                    // Try to find message in DB
+                    def message = Message.findByStatusId(it.statusId)
+                    println it
+                    println message
+                    // If message not found, save it to DB
+                    if (!message) {
+                        message = new Message(it)
+                        message.save(failOnError: true)
+                        println "saved"
+                    }
+                    println message
+                }
+
+                // Update refresh URL
+                search.refreshUrl = searchResults.refreshUrl
+                // Save updated search in DB
+                search.save(failOnError: true)
             }
-            println message
         }
     }
 }
