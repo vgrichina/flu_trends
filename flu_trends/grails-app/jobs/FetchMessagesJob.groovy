@@ -3,6 +3,11 @@ class FetchMessagesJob {
      * Job execution timeout (in milliseconds), set to 30 seconds.
      */
     def timeout = 30000
+    
+    /*
+     * There should not be several instances of this job running concurrently.
+     */
+    def concurrent = false
 
     /*
      * TwitterSearchService instance used to access Twitter Search API
