@@ -7,7 +7,7 @@ body {
     position: absolute;
     width: 800px;
     height: 600px;
-    left: 19em;
+    left: 1em;
     top: 1em;
 }
 
@@ -31,35 +31,27 @@ body {
     padding-left: 7em;
 }
 
-ul.friendsList {
+ul.messageList {
     list-style-type: none;
     overflow: auto;
     max-height: 20em;
 }
 
-ul.friendsList li {
+ul.messageList li {
     padding-bottom: 1.5em;
 }
 
-.friendsList img {
+.messageList img {
     float: left;
     margin-right: 1em;
     width: 48px; 
     height: 48px;  
 }
 
-.friendsList .friendInfo {
-    min-height: 48px;
-}
-
-.friendsList .name {
+.messageList .name {
     font-weight: bold;
 }
 
-.friendsList .bio {
-    color: gray;
-}
-
-.friendsList .message {
+.messageList .message {
     margin-top: 0.5em;
 }

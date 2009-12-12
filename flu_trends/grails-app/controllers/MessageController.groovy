@@ -1,35 +1,28 @@
 import grails.converters.JSON
 
 class MessageController {
-    // TwitterService instance will be injected into this variable by Spring
-    def twitterService
-    // LocationService instance used to lookup location coordinates
-    def locationService
-
     def scaffold = true
-/*
-    def friendsJson = {
-        // Get friends of given user
-        def friends = getFriends(params.name)
-        // Render friends list as JSON
-        render(friends as JSON)
+    
+    def messagesJson = {
+        // Get messages list
+        def messages = getMessages()
+
+        // Render messages list as JSON
+        render(messages as JSON)
     }
 
-    private def getFriends(String userName) {
-        def friends = twitterService.getFriends(params.name)
-        
-        // Return only the needed fields for each user and retrieve coordinates for location
+    private def getMessages() {
+        def messages = Message.findAllByLocationIsNotNull()
+         
+        // Return only the needed fields
         // Results are also grouped by the coords
-        friends.collect { it ->
+        messages.collect { it ->
             [
-                screenName: it.screenName,
-                name: it.name,
-                pictureUrl: it.profileImageUrl as String,
-                bio: it.description,
-                status: it.status?.text,
-                coords: locationService.getCoordsFromLocation(it.location)
-            ]    
+                screenName: it.user,
+                pictureUrl: it.imageUrl,
+                status: it.text,
+                coords: [latitude: it.location.x, longitude: it.location.y]
+             ]    
         }.findAll { it.coords != null }.groupBy { it.coords }.collect { it.value }
     }
-*/
 }
