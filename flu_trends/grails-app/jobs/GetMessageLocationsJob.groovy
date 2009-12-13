@@ -36,7 +36,7 @@ class GetMessageLocationsJob {
         // TODO: There can be very big list, limit results
         def messages
         Message.withTransaction {
-            messages = Message.findAllByLocationIsNull()
+            messages = Message.findAllByProcessed(false)
         }
 
         // Simple cache for user locations
